@@ -164,8 +164,6 @@ Then I repeated this process on track two in order to get more data points.
 
 The model was trained with more than 40,000 lines from different driving logs, including data augmentation images these are more than 160,000 images. The validation set, was 20% of the total images as described above. 
 
-The model was trained using early stopping to prevent over fitting caused by too much training. The maximum epochs was set to 10. To evaluate the models performance, every epoch the validation loss was calculated, the final model trained for 8 epochs before stopping after no improvement for 2 epochs (PATIENCE: number of epochs set to wait for an improvement). So the final weights were from the model after 6 epochs.
-
-
+The model was trained using early stopping to prevent over fitting caused by too much training. The maximum epochs was set to 10. To evaluate the models performance, every epoch the validation loss was calculated, the final model trained for 8 epochs before stopping after no improvement for 2 epochs (PATIENCE: number of epochs set to wait for an improvement). So the final weights were from the model after 6 epochs, it can be accesed [here](model.py)
 
 
