@@ -1,0 +1,4 @@
+center angle: 0.1
+flipped angle: -0.1
+left angle: 0.33
+right angle: -0.13
