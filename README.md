@@ -45,19 +45,25 @@ This lab requires:
 The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) for the details.
 
 The following resources can be found in this github repository:
-* clone_transfer.py
-* clone.py
+* model.py
+* model.h5
 * drive.py
 * video.py
 * load_retrain.py
-* writeup_template.md
+* writeup_report.md
 
 The simulator can be downloaded from the udacity classroom. In the classroom, we have also provided sample data that you can optionally use to help train your model, altough for this project, some new data has been recorded.
 
 ## Details About Files In This Directory
-### `clone_transfer.py`
+### `model.py`
 This is a python script intended to read samples from a log file and then train a model VGG16 like model, to predict stearing angles for the car while it's driving autonomously.
 
+### `model.h5`
+A model trained to predict steering angles 
+
+### `load_retrain.py`
+
+A file to train for some more epochs the model `model.h5` 
 
 ### `drive.py`
 
