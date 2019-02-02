@@ -10,7 +10,7 @@ In this project, you can use deep neural networks and convolutional neural netwo
 
 Udacity have provided a simulator where we can steer a car around a track for data collection. You'll use image data and steering angles to train a neural network and then use this model to drive the car autonomously around the track.
 
-I also have created a detailed writeup of my implementation of the project. Check out the [writeup template](https://github.com/udacity/CarND-Behavioral-Cloning-P3/blob/master/writeup_template.md) **#TODO add link to my writeup** for this project.
+I also have created a detailed writeup of my implementation of the project. Check out the [writeup report](./writeup_report) for this project.
 
 To meet specifications, the project will require submitting five files, but there are more files here,: 
 * model.py (script used to create and train the model)
