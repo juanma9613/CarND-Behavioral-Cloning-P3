@@ -2,6 +2,8 @@
 
 This project was created in order to implement behavioral cloning using deep neural networks, the idea was to implement supervised learning to predict steering angles of a car around some tracks in a simulator in Unity, the input were images and the output a Real value.
 
+The results on both tracks can be seen below. The car drove autonomously on track 1 (100%), but in track 2 it required help in two curves 2/120 sec) about 98% driving accuracy on this difficult track. 
+
 Track 1                       |  Track 2
 :----------------------------:|:------------------------------:
 ![Track 1](./examples/run1_gif.gif) | ![Track 2](./examples/run2_gif.gif)
@@ -106,8 +108,8 @@ The model was trained and validated on different data sets to ensure that the mo
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 116), the loss function was the MSE.
-
+ * The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 116), the loss function was the MSE.
+ * The batch size was 32 bacause this value gave the best results in the validation accuracy 
 #### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the sharp curves on both tracks and driving in ccw in the track 1. Comments referent to each dataset are in model.py Lines 35-43.
@@ -138,33 +140,32 @@ The summary of the sequential architecture is [here](./examples/model_summary.tx
 
 First, The dataset provided by Udacity with images of the first track was used. Data augmentation was used, left and right camera images were used and the steering angle of these images was obtained by adding or substracting an offset angle of 0.2, also the center image was fliplr and its angle measurement multiplied by -1, creating a total of four images per frame. The four images and its respective angles are below: 
 
-
-. The corresponding three images are also shown.#TODO
+|       | center image | fliplr image | left image | right image | 
+| ----- | ------------ | ------------ | ---------- | ----------  |
+| Images | ![alt text](./examples/center_line_track1/center_image.png) | ![alt text](./examples/center_line_track1/flipped_center_image.png) | ![alt text](./examples/center_line_track1/left_image.png)| ![alt text](./examples/center_line_track1/right_image.png) |
+| Steering angle | -0.07 | 0.07 | 0.16 | -0.30 | 
 
 
 Then to generalize a good driving behavior, I  recorded one lap on track but in ccw using center lane driving. Here is an example image of center lane driving in the reversed track:
 
-![alt text][image2]
+|       | center image | fliplr image | left image | right image | 
+| ----- | ------------ | ------------ | ---------- | ----------  |
+| Images | ![alt text](./examples/center_line_reversed_track1/center_image.png) | ![alt text](./examples/center_line_reversed_track1/flipped_center_image.png) | ![alt text](./examples/center_line_reversed_track1/left_image.png)| ![alt text](./examples/center_line_reversed_track1/right_image.png) |
+| Steering angle | -0.12 | 0.12 | 0.11 | -0.35 | 
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle turning in the sharpest curve so that the vehicle would learn to handle it, these images show what a curve looks like.
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+|       | center image | fliplr image | left image | right image | 
+| ----- | ------------ | ------------ | ---------- | ----------  |
+| Images | ![alt text](./examples/sharpest_curve_track1/center_image.png) | ![alt text](./examples/sharpest_curve_track1/flipped_center_image.png) | ![alt text](./examples/sharpest_curve_track1/left_image.png)| ![alt text](./examples/sharpest_curve_track1/right_image.png) |
+| Steering angle | 0.1 | -0.1 | 0.3 | -0.13 | 
 
 Then I repeated this process on track two in order to get more data points.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+The model was trained with more than 40,000 lines from different driving logs, including data augmentation images these are more than 160,000 images. The validation set, was 20% of the total images as described above. 
 
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+The model was trained using early stopping to prevent over fitting caused by too much training. The maximum epochs was set to 10. To evaluate the models performance, every epoch the validation loss was calculated, the final model trained for 8 epochs before stopping after no improvement for 2 epochs (PATIENCE: number of epochs set to wait for an improvement). So the final weights were from the model after 6 epochs.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
